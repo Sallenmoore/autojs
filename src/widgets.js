@@ -43,9 +43,22 @@ class Carousel {}
 //==== Progress Bar
 class ProgressBar {}
 
+class Toasted {
+  constructor(msg, duration = 3000, cn = "toast", position = "center") {
+    Toastify({
+      text: msg,
+      duration: duration,
+      className: cn,
+      position: position,
+      offset: {x: 0, y: 50},
+    }).showToast();
+  }
+}  
+
 //==== Animations
 
 class AnimatedGraph {
+
   constructor(hover_msg = "Hover over a point to see the message", number_of_points = 7, radius = 25, velocity2 =30) {
 
     this.canvas = document.getElementById('animated-graph');
