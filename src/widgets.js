@@ -1,5 +1,5 @@
 //==== Progress Bar
-class MobileMenu {
+export class MobileMenu {
   constructor(menu_items_id = "nav-links", menu_toggle_id = "burger") {
     //#nav-links
     var slideout_menu = document.getElementById("slideout-menu");
@@ -23,43 +23,45 @@ class MobileMenu {
 }
 
 //==== Modals
-class Modal {}
+export class Modal { }
 //==== Tabs
-class Tab {}
+export class Tab { }
 //==== Tooltips
-class Tooltip {}
+export class Tooltip { }
 //==== Tags
-class Tag {}
+export class Tag { }
 //==== Popovers
-class Popover {}
+export class Popover { }
 //==== Dropdowns
-class DropDown {}
+export class DropDown { }
 //==== Collapsibles
-class Collapsible {}
+export class Collapsible { }
 //==== Accordions
-class Accordion {}
+export class Accordion { }
 //==== Carousels
-class Carousel {}
-//==== Progress Bar
-class ProgressBar {}
+export class Carousel { }
 
-class Toasted {
+//==== Progress Bar
+export class ProgressBar { }
+
+//==== Progress Bar
+export class Toasted {
   constructor(msg, duration = 3000, cn = "toast", position = "center") {
     Toastify({
       text: msg,
       duration: duration,
       className: cn,
       position: position,
-      offset: {x: 0, y: 50},
+      offset: { x: 0, y: 50 },
     }).showToast();
   }
-}  
+}
 
 //==== Animations
 
-class AnimatedGraph {
+export class AnimatedGraph {
 
-  constructor(hover_msg = "Hover over a point to see the message", number_of_points = 7, radius = 25, velocity2 =30) {
+  constructor(hover_msg, number_of_points = 7, radius = 25, velocity2 = 30) {
 
     this.canvas = document.getElementById('animated-graph');
     let canvas_col = this.canvas.parentElement;
@@ -67,7 +69,7 @@ class AnimatedGraph {
     this.canvas.height = this.canvas.closest('.hero__content').clientHeight;
     let self = this;
     self.hover = false;
-//grabbing the root element
+    //grabbing the root element
     canvas_col.addEventListener('mouseenter', function (event) {
       // Update mouse current status
       self.hover = true;
@@ -80,14 +82,14 @@ class AnimatedGraph {
       self.hover = false;
     });
 
-    
+
     this.context = this.canvas.getContext('2d');
     // create points
     this.points = [];
-     // velocity squared
+    // velocity squared
     this.velocity2 = velocity2;
     this.boundaryX = this.canvas.width;
-    this.boundaryY = this.canvas.height
+    this.boundaryY = this.canvas.height;
 
     let colors = randomColor({
       count: number_of_points,
@@ -98,8 +100,8 @@ class AnimatedGraph {
 
     for (let i = 0; i < number_of_points; i++) {
       var point = {};
-      point.x = Math.random()*this.boundaryX+radius;
-      point.y = Math.random() *this.boundaryY+radius;
+      point.x = Math.random() * this.boundaryX + radius;
+      point.y = Math.random() * this.boundaryY + radius;
       // random vx 
       point.vx = (Math.floor(Math.random()) * 2 - 1) * Math.random();
       // vy^2 = velocity^2 - vx^2
@@ -126,17 +128,17 @@ class AnimatedGraph {
     });
     this.devpoint = {};
     this.devpoint.x = radius;
-    this.devpoint.y = (this.boundaryY/2)+radius;
-    this.devpoint.color = color
+    this.devpoint.y = (this.boundaryY / 2) + radius;
+    this.devpoint.color = color;
     this.devpoint.icon = document.getElementById('speaker1');
     this.devpoint.radius = radius;
     this.userpoint = {};
-    this.userpoint.x = this.boundaryX-radius;
-    this.userpoint.y = (this.boundaryY/2)+radius;
-    this.userpoint.color = color
+    this.userpoint.x = this.boundaryX - radius;
+    this.userpoint.y = (this.boundaryY / 2) + radius;
+    this.userpoint.color = color;
     this.userpoint.icon = document.getElementById('speaker2');
     this.userpoint.radius = radius;
-  
+
     // animate
     animate(this);
   }
@@ -152,7 +154,7 @@ class AnimatedGraph {
         var point = this.points[i];
         point.x += point.vx;
         point.y += point.vy;
-      
+
         for (let i = 0; i < point.buddies.length; i++) {
           this.drawLine(point, point.buddies[i]);
         }
@@ -170,16 +172,16 @@ class AnimatedGraph {
       }
     }
   }
-  
+
   resetVelocity(point, axis, dir) {
-    if(axis == 'x') {
-      point.vx = dir*Math.random();  
+    if (axis == 'x') {
+      point.vx = dir * Math.random();
       let vx2 = Math.pow(point.vx, 2);
-      point.vy = Math.sqrt(this.velocity2 - vx2) * (Math.random()*2-1);
+      point.vy = Math.sqrt(this.velocity2 - vx2) * (Math.random() * 2 - 1);
     } else {
-      point.vy = dir*Math.random();  
+      point.vy = dir * Math.random();
       let vx2 = this.velocity2 - Math.pow(point.vy, 2);
-      point.vx = Math.sqrt(vx2) * (Math.random()*2-1);
+      point.vx = Math.sqrt(vx2) * (Math.random() * 2 - 1);
     }
   }
 
@@ -198,7 +200,7 @@ class AnimatedGraph {
       point.icon,
       point.x - offset, point.y - offset, offset * 2, offset * 2);
   }
-  
+
   drawLine(p1, p2) {
     this.context.beginPath();
     this.context.moveTo(p1.x, p1.y);
@@ -211,8 +213,5 @@ class AnimatedGraph {
     gradient.addColorStop(1, p2.color);
     this.context.strokeStyle = gradient;
     this.context.stroke();
-  }    
+  }
 }
-
-
-
