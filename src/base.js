@@ -40,11 +40,11 @@ function add_event(element, event, fn) {
 }
 
 export function add_id_event(id, event, fn) {
-  add_event(get_id(id), event, fn);
+  add_event(get_object_by_id(id), event, fn);
 }
 
 export function add_class_event(class_name, event, fn) {
-  get_class_elems(class_name).forEach((el) => {
+  get_objects_by_class(class_name).forEach((el) => {
     add_event(el, event, fn);
   });
 }
