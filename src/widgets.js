@@ -23,7 +23,23 @@ export class MobileMenu {
 }
 
 //==== Modals
-export class Modal { }
+
+const auto_open_modal = document.querySelectorAll('.open-modal');
+for (var i = 0; i < auto_open_modal.length; i++) {
+  let modal = document.getElementById(auto_open_modal[i].dataset.target);
+  let close_modal = document.createElement("div");
+  close_modal.innerHTML = "<iconify-icon icon='material-symbols:close'></iconify-icon>";
+  close_modal.classList.add("close-modal");
+  close_modal.addEventListener('click', function (e) {
+    modal.close();
+    return false;
+  });
+  modal.appendChild(close_modal);
+  auto_open_modal[i].addEventListener('click', function (e) {
+    modal.showModal();
+  });
+}
+
 //==== Tabs
 export class Tab { }
 //==== Tooltips

@@ -26,6 +26,10 @@ export function get_object_by_id(id) {
   return document.getElementById(id);
 }
 
+export function remove_element(e) {
+  return e.remove();
+}
+
 
 //======= Attach Events =======//
 
@@ -51,11 +55,12 @@ export function add_class_event(class_name, event, fn) {
 
 //======= Templates =======//
 
-export function get_template(selector) {
-  return document
-    .getElementById("js_templates")
-    .querySelector(selector)
+export function get_template(selector, fn) {
+  let cloned_node = document
+    .getElementById("js-templates")
+    .getElementById(selector)
     .cloneNode(true);
+  fn(clone_node);
 }
 
 //========= Display ===========//
