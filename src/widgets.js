@@ -1,4 +1,4 @@
-//==== Progress Bar
+//==== Mobile Menu
 export class MobileMenu {
   constructor(menu_items_id = "nav-links", menu_toggle_id = "burger") {
     //#nav-links
@@ -36,6 +36,7 @@ for (var i = 0; i < auto_open_modal.length; i++) {
   });
   modal.appendChild(close_modal);
   auto_open_modal[i].addEventListener('click', function (e) {
+    modal.close();
     modal.showModal();
   });
 }
