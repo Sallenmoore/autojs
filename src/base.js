@@ -44,13 +44,19 @@ function add_event(element, event, fn) {
 }
 
 export function add_id_event(id, event, fn) {
-  add_event(get_object_by_id(id), event, fn);
+  let objs = get_object_by_id(id);
+  if (objs) {
+    add_event(objs, event, fn);
+  }
 }
 
 export function add_class_event(class_name, event, fn) {
-  get_objects_by_class(class_name).forEach((el) => {
-    add_event(el, event, fn);
-  });
+  let objs = get_objects_by_class(class_name);
+  if (objs.length > 0) {
+    objs.forEach((el) => {
+      add_event(el, event, fn);
+    });
+  }
 }
 
 //======= Templates =======//
@@ -128,6 +134,19 @@ export function post_data(url = "#", data = {}, fn = (response) => { console.log
     },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      fn(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+export function get_data(url = "#", fn = (response) => { console.log(response); }) {
+  fetch(url, { method: "GET" })
     .then((response) => {
       return response.json();
     })

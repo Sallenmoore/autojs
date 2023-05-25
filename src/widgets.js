@@ -31,13 +31,11 @@ for (var i = 0; i < auto_open_modal.length; i++) {
   close_modal.innerHTML = "<iconify-icon icon='material-symbols:close'></iconify-icon>";
   close_modal.classList.add("close-modal");
   close_modal.addEventListener('click', function (e) {
-    modal.close();
-    return false;
+    modal.classList.remove("is-active");
   });
-  modal.appendChild(close_modal);
+  modal.querySelector(".modal__content").appendChild(close_modal);
   auto_open_modal[i].addEventListener('click', function (e) {
-    modal.close();
-    modal.showModal();
+    modal.classList.add("is-active");
   });
 }
 
