@@ -26,6 +26,10 @@ export function get_object_by_id(id) {
   return document.getElementById(id);
 }
 
+export function get_objects_by_selector(selector_name) {
+  return Array.from(document.querySelectorAll(selector_name));
+}
+
 export function remove_element(e) {
   return e.remove();
 }
@@ -58,6 +62,53 @@ export function add_class_event(class_name, event, fn) {
     });
   }
 }
+
+export function add_selector_event(selector_name, event, fn) {
+  let objs = get_objects_by_selector(selector_name);
+  if (objs.length > 0) {
+    objs.forEach((el) => {
+      add_event(el, event, fn);
+    });
+  }
+}
+
+//======= Append Elements =======//
+
+function append_element(element, parent) {
+  if (Array.isArray(element) || element instanceof NodeList) {
+    element.forEach((el) => {
+      parent.append(el);
+    });
+  } else {
+    parent.append(element);
+  }
+}
+
+export function append_to_id(id, parent) {
+  let objs = get_object_by_id(id);
+  if (objs) {
+    append_element(objs, parent);
+  }
+}
+
+export function append_to_class(class_name, parent) {
+  let objs = get_objects_by_class(class_name);
+  if (objs.length > 0) {
+    objs.forEach((el) => {
+      append_element(el, parent);
+    });
+  }
+}
+
+export function append_to_selector(selector_name, parent) {
+  let objs = get_objects_by_selector(selector_name);
+  if (objs.length > 0) {
+    objs.forEach((el) => {
+      append_element(el, parent);
+    });
+  }
+}
+
 
 //======= Templates =======//
 
