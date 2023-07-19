@@ -31,6 +31,10 @@ export function get_objects_by_selector(selector_name) {
   return Array.from(document.querySelectorAll(selector_name));
 }
 
+export function get_children(elem) {
+  return Array.from(elem.children);
+}
+
 export function remove_element(e) {
   return e.remove();
 }
@@ -155,6 +159,15 @@ export function toggle(element) {
     element.classList.toggle("is-hidden");
   }
 }
+
+
+// Toggle element visibility
+export function hide_children(element) {
+  get_children(element).forEach(el => {
+    el.classList.add('is-hidden');
+  });
+}
+
 
 // =============== Intervals =============== //
 
