@@ -1,6 +1,32 @@
+export var autojs_options = {
+  textarea_autoheight: () => {
+    if (autojs_options.textarea_autoheight) {
+      get_objects_by_selector('textarea').forEach((el) => {
+        el.style.height = "";
+        el.style.height = (el.scrollHeight + 10) + "px";
+      });
+    }
+    add_selector_event('textarea', 'input', () => {
+      this.style.height = "";
+      this.style.height = (this.scrollHeight + 10) + "px";
+    });
+  }
+};
+
+export var autojs = {
+  version: "0.0.1",
+  configure: () => {
+    autojs_options.textarea_autoheight();
+  },
+  rebind: () => {
+    autojs_options.textarea_autoheight();
+  }
+};
+
 //========================================================================//
 //  UTILITY FUNCTIONS                                                     //
 //========================================================================//
+
 
 export function random_int(min, max) {
   min = Math.ceil(min);
@@ -77,7 +103,7 @@ export function add_selector_event(selector_name, event, fn) {
   }
 }
 
-//======= Append Elements =======//
+//======= Add Child Elements =======//
 
 function append_element(element, parent) {
   if (Array.isArray(element) || element instanceof NodeList) {
@@ -111,6 +137,21 @@ export function append_to_selector(selector_name, parent) {
     objs.forEach((el) => {
       append_element(el, parent);
     });
+  }
+}
+
+export function prepend_to_selector(selector, parent) {
+  if (typeof selector === "string") {
+    var objs = get_object_by_selector(selector);
+  } else {
+    var objs = selector;
+  }
+  if (objs.length > 0) {
+    objs.forEach((el) => {
+      parent.insertBefore(el, parent.firstChild);
+    });
+  } else {
+    parent.insertBefore(objs, parent.firstChild);
   }
 }
 
