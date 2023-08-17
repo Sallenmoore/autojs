@@ -44,7 +44,10 @@ export function outerHeight(el) {
   );
 }
 
-//======= Get Elements =======//
+//========================================================================//
+//  GET ELEMENT FUNCTIONS                                                 //
+//========================================================================//
+
 export function get_objects_by_class(class_name) {
   return Array.from(document.getElementsByClassName(class_name));
 }
@@ -65,8 +68,9 @@ export function remove_element(e) {
   return e.remove();
 }
 
-
-//======= Attach Events =======//
+//========================================================================//
+//  Events FUNCTIONS                                                      //
+//========================================================================//
 
 function add_event(element, event, fn) {
   if (Array.isArray(element) || element instanceof NodeList) {

@@ -8,8 +8,13 @@ export class Loader {
   constructor(parent_id) {
     this.loader = document.createElement('div');
     this.loader.classList.add('is-loading');
-    let container = get_object_by_id(parent_id);
-    prepend_to_selector(this.loader, container);
+    if (parent_id) {
+      prepend_to_selector(this.loader, get_object_by_id(parent_id));
+    } else {
+      document.body.append(this.loader);
+    }
+
+
   }
   remove() {
     this.loader.remove();
