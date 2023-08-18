@@ -6,10 +6,13 @@
 //   </script>
 export class Loader {
   constructor(parent_id) {
+    let load_anim = document.createElement('div');
+    load_anim.classList.add('loader');
     this.loader = document.createElement('div');
     this.loader.classList.add('is-loading');
+    this.loader.appendChild(load_anim);
     if (parent_id) {
-      prepend_to_selector(this.loader, get_object_by_id(parent_id));
+      get_object_by_id(parent_id).insertBefore(this.loader, get_object_by_id(parent_id).firstChild);
     } else {
       document.body.append(this.loader);
     }

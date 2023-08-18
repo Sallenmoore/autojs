@@ -6,9 +6,9 @@ export var autojs_options = {
         el.style.height = (el.scrollHeight + 10) + "px";
       });
     }
-    add_selector_event('textarea', 'input', () => {
-      this.style.height = "";
-      this.style.height = (this.scrollHeight + 10) + "px";
+    add_selector_event('textarea', 'input', (e) => {
+      e.target.style.height = "";
+      e.target.style.height = (e.target.scrollHeight + 10) + "px";
     });
   }
 };
@@ -126,15 +126,6 @@ export function append_to_id(id, parent) {
   }
 }
 
-export function append_to_class(class_name, parent) {
-  let objs = get_objects_by_class(class_name);
-  if (objs.length > 0) {
-    objs.forEach((el) => {
-      append_element(el, parent);
-    });
-  }
-}
-
 export function append_to_selector(selector_name, parent) {
   let objs = get_objects_by_selector(selector_name);
   if (objs.length > 0) {
@@ -144,19 +135,9 @@ export function append_to_selector(selector_name, parent) {
   }
 }
 
-export function prepend_to_selector(selector, parent) {
-  if (typeof selector === "string") {
-    var objs = get_object_by_selector(selector);
-  } else {
-    var objs = selector;
-  }
-  if (objs.length > 0) {
-    objs.forEach((el) => {
-      parent.insertBefore(el, parent.firstChild);
-    });
-  } else {
-    parent.insertBefore(objs, parent.firstChild);
-  }
+export function prepend_to_id(selector, elem) {
+  var parent = get_object_by_id(selector);
+  parent.insertBefore(elem, parent.firstChild);
 }
 
 
