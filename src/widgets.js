@@ -5,22 +5,24 @@
 //     new Loader('loading-container-id');
 //   </script>
 export class Loader {
-  constructor(parent_id) {
+  constructor() {
     let load_anim = document.createElement('div');
     load_anim.classList.add('loader');
     this.loader = document.createElement('div');
     this.loader.classList.add('is-loading');
+    this.loader.classList.add('is-hidden');
     this.loader.appendChild(load_anim);
+  }
+  remove() {
+    this.loader.classList.add('is-hidden');
+  }
+  show(parent_id) {
+    this.loader.classList.remove('is-hidden');
     if (parent_id) {
       get_object_by_id(parent_id).insertBefore(this.loader, get_object_by_id(parent_id).firstChild);
     } else {
-      document.body.append(this.loader);
+      document.body.insertBefore(this.loader, document.body.firstChild);
     }
-
-
-  }
-  remove() {
-    this.loader.remove();
   }
 }
 //==== Mobile Menu
