@@ -10,6 +10,12 @@ export var autojs_options = {
       e.target.style.height = "";
       e.target.style.height = (e.target.scrollHeight + 10) + "px";
     });
+  },
+  contenteditable: () => {
+    var editables = document.getElementsByClassName('is-editable');
+    for (const editable of editables) {
+      editable.contentEditable = true;
+    }
   }
 };
 
@@ -17,9 +23,11 @@ export var autojs = {
   version: "0.0.1",
   configure: () => {
     autojs_options.textarea_autoheight();
+    autojs_options.contenteditable();
   },
   rebind: () => {
     autojs_options.textarea_autoheight();
+    autojs_options.contenteditable();
   }
 };
 
